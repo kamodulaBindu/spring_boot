@@ -1,0 +1,11 @@
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\exception\CustomizedResponseEntityExceptionHandler.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\exception\RecordNotFoundException.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\service\CurrencyConversionServiceImpl.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\service\CurrencyConversionServiceProxy.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\controller\CurrencyConversionController.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\model\CurrencyConversionRequest.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\model\ConversionFactorResponse.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\CurrencyConversionServiceApplication.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\service\CurrencyConversionService.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\exception\ExceptionResponse.java
+C:\temp\spring_boot\microservice-reskill\currency-conversion-service\src\main\java\com\ibm\currency\conversion\model\CurrencyConversionResponse.java

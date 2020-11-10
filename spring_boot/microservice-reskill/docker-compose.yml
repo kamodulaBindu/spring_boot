@@ -1,0 +1,115 @@
+version: '3'
+
+services:
+  discovery-service:
+    build: discovery-service/
+    restart: always
+    #network_mode: "host"
+    #hostname: localhost
+    image: discovery-service
+    ports:
+      - 8761:8761
+    healthcheck:
+      test: "exit 0"
+
+  currency-conversion-service:
+    build: currency-conversion-service/
+    depends_on:
+      - discovery-service
+    restart: always
+    #network_mode: "host"
+    image: currency-conersion-service
+    #hostname: localhost
+    ports:
+      - 8030:8030
+    healthcheck:
+      test: "exit 0"
+
+  manage-currency-conversion-factor-service:
+    build: manage-currency-conversion-factor-service/
+    depends_on:
+      - discovery-service
+    restart: always
+    #network_mode: "host"
+    image: manage-currency-conversion-factor-service
+    #hostname: localhost
+    ports:
+      - 8020:8020
+    healthcheck:
+      test: "exit 0"
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    container_name: "rabbitmq"
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "rabbitmq"
+      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+      RABBITMQ_DEFAULT_VHOST: "/"
+    ports:
+      - 15672:15672
+      - 5672:5672
+    labels:
+      NAME: "rabbitmq1"
+    volumes:
+      - ./.docker/rabbitmq/etc/:/etc/rabbitmq/
+      - ./.docker/rabbitmq/data/:/var/lib/rabbitmq/
+      - ./.docker/rabbitmq/logs/:/var/log/rabbitmq/
+
+  h2:
+    image: 1000kit/h2
+    restart: always
+    #network_mode: host
+    container_name: 'h2'
+    ports:
+      - 8181:8181
+      - 1521:1521
+#     volumes:
+#        - h2-data:/opt/h2-data
+
+  storage:
+    image: openzipkin/zipkin-mysql
+    container_name: mysql
+    # Uncomment to expose the storage port for testing
+    ports:
+      - 3306:3306
+    #    volumes:
+    #      - dbfiles:/mysql/data
+    restart: unless-stopped
+
+  zipkin:
+    image: openzipkin/zipkin
+    container_name: zipkin
+    # Environment settings are defined here https://github.com/openzipkin/zipkin/tree/1.19.0/zipkin-server#environment-variables
+    environment:
+      - STORAGE_TYPE=mysql
+      # Point the zipkin at the storage backend
+      - MYSQL_HOST=mysql
+      # Uncomment to enable scribe
+      # - SCRIBE_ENABLED=true
+      # Uncomment to enable self-tracing
+      # - SELF_TRACING_ENABLED=true
+      # Uncomment to enable debug logging
+      # - JAVA_OPTS=-Dlogging.level.zipkin=DEBUG
+    ports:
+      # Port used for the Zipkin UI and HTTP Api
+      - 9411:9411
+    depends_on:
+      - storage
+    restart: unless-stopped
+
+  dependencies:
+    image: openzipkin/zipkin-dependencies
+    container_name: dependencies
+    entrypoint: crond -f
+    environment:
+      - STORAGE_TYPE=mysql
+      - MYSQL_HOST=mysql
+      # Add the baked-in username and password for the zipkin-mysql image
+      - MYSQL_USER=zipkin
+      - MYSQL_PASS=zipkin
+      # Uncomment to adjust memory used by the dependencies job
+      - JAVA_OPTS=-verbose:gc -Xms512m -Xmx512m
+    depends_on:
+      - storage
+    restart: unless-stopped

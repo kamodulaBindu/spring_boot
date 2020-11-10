@@ -1,0 +1,11 @@
+com\ibm\currency\conversion\exception\CustomizedResponseEntityExceptionHandler.class
+com\ibm\currency\conversion\model\ConversionFactorResponse.class
+com\ibm\currency\conversion\model\CurrencyConversionRequest.class
+com\ibm\currency\conversion\exception\RecordNotFoundException.class
+com\ibm\currency\conversion\service\CurrencyConversionServiceProxy.class
+com\ibm\currency\conversion\exception\ExceptionResponse.class
+com\ibm\currency\conversion\service\CurrencyConversionServiceImpl.class
+com\ibm\currency\conversion\controller\CurrencyConversionController.class
+com\ibm\currency\conversion\model\CurrencyConversionResponse.class
+com\ibm\currency\conversion\service\CurrencyConversionService.class
+com\ibm\currency\conversion\CurrencyConversionServiceApplication.class

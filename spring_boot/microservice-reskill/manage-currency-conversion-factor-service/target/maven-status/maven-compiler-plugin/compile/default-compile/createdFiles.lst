@@ -1,0 +1,11 @@
+com\ibm\learning\exception\ExceptionResponse.class
+com\ibm\learning\controller\CurrencyConversionFactorController.class
+com\ibm\learning\repository\ConversionFactorRepository.class
+com\ibm\learning\model\ConversionFactorReSponse.class
+com\ibm\learning\service\ManageCurrencyConversionService.class
+com\ibm\learning\exception\RecordNotFoundException.class
+com\ibm\learning\ManageCurrencyConversionFactorApplication.class
+com\ibm\learning\model\ConversionFactorRequest.class
+com\ibm\learning\service\ManageCurrencyConversionServiceImpl.class
+com\ibm\learning\entity\ConversionFactorEntity.class
+com\ibm\learning\exception\CustomizedResponseEntityExceptionHandler.class
